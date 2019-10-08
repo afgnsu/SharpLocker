@@ -13,3 +13,5 @@ SharpLocker helps get current user credentials by popping a fake Windows lock sc
 
 
 ![Working SharpLocker](https://github.com/Pickfordmatt/SharpLocker/blob/master/sharplocker.png?raw=true)
+
+在当前目录下生成log.txt文件。
